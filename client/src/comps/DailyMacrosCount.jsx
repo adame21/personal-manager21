@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 
 function DailyMacrosCount() {
 
-    let defaultProtein = "120"
-    let defaultCarbs = "230"
-    let defaultFat = "80"
+    let defaultProtein = "161"
+    let defaultCarbs = "351"
+    let defaultFat = "75"
     let defaultCalories = defaultProtein * 4 + defaultCarbs * 4 + defaultFat * 9
 
     let defaultDailyStats = {
@@ -46,19 +46,26 @@ function DailyMacrosCount() {
     }, [])
 
     function updateLocalStorage(name, value) {
-        // let name = ev.target.name
-        // let value = ev.target.value
         let relevantStats = localStorage.getItem("adamStats")
         relevantStats = JSON.parse(relevantStats)
         relevantStats[name] = value
         localStorage.setItem("adamStats", JSON.stringify(relevantStats))
     }
 
+    function reset() {
+        localStorage.setItem("adamStats", JSON.stringify(defaultDailyStats))
+        let relevantStats = localStorage.getItem("adamStats")
+        relevantStats = JSON.parse(relevantStats)
+        setProtein(relevantStats.protein)
+        setCarbs(relevantStats.carbs)
+        setFat(relevantStats.fat)
+    }
+
     return (
         <div className="container text-center mt-5" dir="rtl">
             <div className="row">
                 <div className="col-2">
-                    חלבון
+                    {(protein * 1) <= 0 ? <label className="text-success">חלבון</label> : <label>חלבון</label>}
                 </div>
                 <div className="col-2">
                     {protein}
@@ -72,7 +79,7 @@ function DailyMacrosCount() {
             </div>
             <div className="row mt-2">
                 <div className="col-2">
-                    פחמימה
+                    {(carbs * 1) <= 0 ? <label className="text-success">פחמימה</label> : <label>פחמימה</label>}
                 </div>
                 <div className="col-2">
                     {carbs}
@@ -86,7 +93,7 @@ function DailyMacrosCount() {
             </div>
             <div className="row mt-2">
                 <div className="col-2">
-                    שומן
+                    {(fat * 1) <= 0 ? <label className="text-success">שומן</label> : <label>שומן</label>}
                 </div>
                 <div className="col-2">
                     {fat}
@@ -100,10 +107,15 @@ function DailyMacrosCount() {
             </div>
             <div className="row mt-2">
                 <div className="col-2">
-                    קלוריות
+                    {(protein * 4) + (carbs * 4) + (fat * 9) <= 0 ? <label className="text-success">קלוריות</label> : <label className="text-success">קלוריות</label>}
                 </div>
                 <div className="col-2">
                     {(protein * 4) + (carbs * 4) + (fat * 9)}
+                </div>
+            </div>
+            <div className="row">
+                <div className="col">
+                    <button className="btn btn-danger" onClick={reset}>איפוס</button>
                 </div>
             </div>
         </div>
