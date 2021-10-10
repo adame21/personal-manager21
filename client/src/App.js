@@ -1,5 +1,7 @@
+import './App.css'
 const { default: Header } = require("./comps/Header");
 const { default: DailyMacrosCount } = require('./comps/DailyMacrosCount')
+
 
 function App() {
   return (
