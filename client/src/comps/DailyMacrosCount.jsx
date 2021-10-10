@@ -14,7 +14,7 @@ function DailyMacrosCount() {
                     120
                 </div>
                 <div className="col-2">
-                    <input pattern="[0-9]*" type="number" />
+                    <input pattern="[0-9]*" type="tel"  />
                 </div>
             </div>
             <div className="row">
