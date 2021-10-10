@@ -107,7 +107,7 @@ function DailyMacrosCount() {
             </div>
             <div className="row mt-2">
                 <div className="col-2">
-                    {(protein * 4) + (carbs * 4) + (fat * 9) <= 0 ? <label className="text-success">קלוריות</label> : <label className="text-success">קלוריות</label>}
+                    {(protein * 4) + (carbs * 4) + (fat * 9) <= 0 ? <label className="text-success">קלוריות</label> : <label >קלוריות</label>}
                 </div>
                 <div className="col-2">
                     {(protein * 4) + (carbs * 4) + (fat * 9)}
